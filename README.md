@@ -1,21 +1,20 @@
-# Welcome to Buffalo!
-
-Thank you for choosing Buffalo for your web development needs.
+# Welcome to Backy.io AdminLTE3 Go Buffalo template!
 
 ## Starting the Application
 
-Buffalo ships with a command that will watch your application and automatically rebuild the Go binary and any assets for you. To do that run the "buffalo dev" command:
+Install Buffalo, you can find additional links bellow.
 
-	$ buffalo dev
+Run buffalo dev from console.
 
-If you point your browser to [http://127.0.0.1:3000](http://127.0.0.1:3000) you should see a "Welcome to Buffalo!" page.
+If you point your browser to [http://127.0.0.1:3000](http://127.0.0.1:3000) you should see the base AdminLTe3 pages.
 
-**Congratulations!** You now have your Buffalo application up and running.
+## Helpers
 
-## What Next?
+The original AdminLTE3 template split into several buffalo helper and template.1
 
-We recommend you heading over to [http://gobuffalo.io](http://gobuffalo.io) and reviewing all of the great documentation there.
+## Used libraries
 
-Good luck!
+[Buffalo](http://gobuffalo.io)
 
-[Powered by Buffalo](http://gobuffalo.io)
+[AdminLTE3](http://https://adminlte.io/themes/v3/index3.html)
+
