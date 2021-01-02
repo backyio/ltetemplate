@@ -90,8 +90,8 @@ type (
 )
 
 // NewApplicationSettings returns new application settings with default values
-func NewSettings() Settings {
-	return Settings{
+func NewSettings() *Settings {
+	return &Settings{
 		Layout:                 DefaultLayout,
 		TabbedIFrame:           DefaultTabbedIFrame,
 		FixedFooter:            DefaultFixedFooter,

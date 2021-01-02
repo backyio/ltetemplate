@@ -4,8 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
-  <%= partial("app/css.html") %>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <%= stylesheetTag("plugins/fontawesome-free/css/all.css") %>
+  <!-- Theme style -->
+  <%= stylesheetTag("css/adminlte.css") %>
+
+ <%= if (RenderJustFrame) { %>
+   <%= if (IsAuth) {  %>
+     <!-- icheck bootstrap -->
+     <%= stylesheetTag("plugins/icheck-bootstrap/icheck-bootstrap.css") %>
+   <% } %>
+ <% } else { %>
+  <!-- Ionicons -->
+  <%= stylesheetTag("css/ionicons.css") %>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <%= stylesheetTag("plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css") %>
+  <!-- iCheck -->
+  <%= stylesheetTag("plugins/icheck-bootstrap/icheck-bootstrap.css") %>
+  <!-- JQVMap -->
+  <%= stylesheetTag("plugins/jqvmap/jqvmap.css") %>
+  <!-- overlayScrollbars -->
+  <%= stylesheetTag("plugins/overlayScrollbars/css/OverlayScrollbars.css") %>
+  <!-- Daterange picker -->
+  <%= stylesheetTag("plugins/daterangepicker/daterangepicker.css") %>
+  <!-- summernote -->
+  <%= stylesheetTag("plugins/summernote/summernote-bs4.css") %>
+<% } %>
+
 </head>
+<%= if (RenderJustFrame) { %>
+ <%= yield %>
+<% } else { %>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -45,6 +77,49 @@
   </aside>
 </div>
 
-<%= partial("app/js.html") %>
+
+<!-- jQuery -->
+<%= javascriptTag("plugins/jquery/jquery.js") %>
+<!-- jQuery UI 1.11.4 -->
+<%= javascriptTag("plugins/jquery-ui/jquery-ui.js") %>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<% } %>
+<!-- Bootstrap 4 -->
+<%= javascriptTag("plugins/bootstrap/js/bootstrap.bundle.js") %>
+<!-- AdminLTE App -->
+<%= javascriptTag("js/adminlte.js") %>
+<!-- AdminLTE for demo purposes -->
+
+<%= if (RenderJustFrame) { %>
+
+<% } else { %>
+ <!-- ChartJS -->
+ <%= javascriptTag("plugins/chart.js/Chart.js") %>
+ <!-- Sparkline -->
+ <%= javascriptTag("plugins/sparklines/sparkline.js") %>
+ <!-- JQVMap -->
+ <%= javascriptTag("plugins/jqvmap/jquery.vmap.js") %>
+ <%= javascriptTag("plugins/jqvmap/maps/jquery.vmap.usa.js") %>
+ <!-- jQuery Knob Chart -->
+ <%= javascriptTag("plugins/jquery-knob/jquery.knob.js") %>
+ <!-- daterangepicker -->
+ <%= javascriptTag("plugins/moment/moment.js") %>
+ <%= javascriptTag("plugins/daterangepicker/daterangepicker.js") %>
+ <!-- Tempusdominus Bootstrap 4 -->
+ <%= javascriptTag("plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js") %>
+ <!-- Summernote -->
+ <%= javascriptTag("plugins/summernote/summernote-bs4.js") %>
+ <!-- overlayScrollbars -->
+ <%= javascriptTag("plugins/overlayScrollbars/js/jquery.overlayScrollbars.js") %>
+ <!-- AdminLTE for demo purposes -->
+ <%= javascriptTag("js/demo.js") %>
+ <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+ <%= javascriptTag("js/pages/dashboard.js") %>
+<% } %>
+
 </body>
+
 </html>

@@ -5,17 +5,25 @@ import (
 	"github.com/gobuffalo/helpers"
 	"github.com/gobuffalo/helpers/forms"
 	"github.com/gobuffalo/helpers/hctx"
+	"lte/helpers/html/tables"
+	"lte/helpers/html/ui"
 	"lte/helpers/html/widgets"
 	"github.com/gobuffalo/helpers/forms/bootstrap"
 )
 
 // hWidgets contains lte widget helpers
-var hWidgets = widgets.New()
+var (
+	hWidgets = widgets.New()
+	hTables  = tables.New()
+	hUI      = ui.New()
+)
 
 // lteALL is function for collecting all available lte helper function
 var lteALL = func() hctx.Map {
 	return hctx.Merge(
 		hWidgets,
+		hTables,
+		hUI,
 	)
 }
 

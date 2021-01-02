@@ -11,6 +11,14 @@ type ActionSuite struct {
 	*suite.Action
 }
 
+func (as *ActionSuite) T() *testing.T {
+	panic("implement me")
+}
+
+func (as *ActionSuite) SetT(t *testing.T) {
+	panic("implement me")
+}
+
 func Test_ActionSuite(t *testing.T) {
 	action, err := suite.NewActionWithFixtures(App(), packr.New("Test_ActionSuite", "../fixtures"))
 	if err != nil {

@@ -1,4 +1,4 @@
-package widgets
+package tables
 
 import (
 	"github.com/gobuffalo/helpers/hctx"
@@ -6,12 +6,12 @@ import (
 	"html/template"
 )
 
-// Info implements admin lte info box
-func Info(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
+// NewDataTable implements data table render
+func NewDataTable(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
 	if opts == nil {
 		opts = tags.Options{}
 	}
-	hn := "f"
+	hn := "t"
 	if n, ok := opts["var"]; ok {
 		hn = n.(string)
 		delete(opts, "var")

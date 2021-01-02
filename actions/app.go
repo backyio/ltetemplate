@@ -4,12 +4,11 @@ import (
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/envy"
 	forcessl "github.com/gobuffalo/mw-forcessl"
-	paramlogger "github.com/gobuffalo/mw-paramlogger"
-	"github.com/unrolled/secure"
-
-	csrf "github.com/gobuffalo/mw-csrf"
 	i18n "github.com/gobuffalo/mw-i18n"
+	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/packr/v2"
+	"github.com/unrolled/secure"
+	"lte/helpers"
 )
 
 // ENV is used to help switch settings based on where the
@@ -38,6 +37,11 @@ func App() *buffalo.App {
 			SessionName: "_lte_session",
 		})
 
+		// Use Lte specific context
+		app.Use(helpers.LteCustomContext)
+
+		app.Use(helpers.LteAuthRedirect)
+
 		// Automatically redirect to SSL
 		app.Use(forceSSL())
 
@@ -46,12 +50,13 @@ func App() *buffalo.App {
 
 		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 		// Remove to disable this.
-		app.Use(csrf.New)
+		//app.Use(csrf.New)
 
 		// Setup and use translations:
 		app.Use(translations())
 
-		app.GET("/", HomeHandler)
+		// Custom route register
+		registerRoutes(app)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
