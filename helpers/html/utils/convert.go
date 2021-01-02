@@ -1,6 +1,9 @@
 package utils
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // ConvShadow is converts regular name to bootstrap shadow
 func ConvShadow(name string) string {
@@ -16,16 +19,19 @@ func ConvShadow(name string) string {
 }
 
 // ConvBG is converts regular name to bootstrap background
-func ConvBG(name string) string {
+func ConvBG(prefix string, name string) string {
+	if len(prefix) == 0 {
+		prefix = "bg"
+	}
 	switch strings.ToLower(name) {
 	case "info":
-		return "bg-info"
+		return fmt.Sprintf("%s-info", prefix)
 	case "success":
-		return "bg-success"
+		return fmt.Sprintf("%s-success", prefix)
 	case "warning":
-		return "bg-warning"
+		return fmt.Sprintf("%s-warning", prefix)
 	case "danger":
-		return "bg-danger"
+		return fmt.Sprintf("%s-danger", prefix)
 	}
 	return name
 }

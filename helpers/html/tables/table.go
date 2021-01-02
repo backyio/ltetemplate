@@ -4,46 +4,62 @@ import (
 	"github.com/gobuffalo/helpers/hctx"
 	"github.com/gobuffalo/tags/v3"
 	"html/template"
-	"reflect"
+	"lte/helpers/html/utils"
 )
 
 type (
 
 	SimpleTableImp struct {
-		tableHelper
+		utils.BuffaloHelper
 		tags.Options
-		data       interface{}
-		id         string
-		name       string
-		reflection reflect.Value
-		Errors     tags.Errors
+		Data       interface{}
+		ID         string
+		Name       string
 	}
 
-	simpleTableHelper struct {
+	SimpleTableHelper struct {
 		*SimpleTableImp
 	}
 )
 
+func (s *SimpleTableImp) Append(body string) {
+	s.AddRow(body)
+}
+
+func (s *SimpleTableImp) HTML() template.HTML {
+	return template.HTML("")
+}
+
+func (s* SimpleTableImp) AddRow(body string) {
+
+}
+
 // NewSimpleTable implements data table renderer
 func NewSimpleTable(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
-	return mainTableHelper(nil, opts, help, func(data interface{}, opts tags.Options) tableHelper {
+	if _, ok := opts["var"]; !ok {
+		opts["var"] = "st"
+	}
+	return utils.BuffaloHelperCallback(nil, nil, opts, help, func(model interface{}, data interface{}, opts tags.Options) utils.BuffaloHelper {
 		return newSimpleTable(data, opts)
 	})
 }
 
 // NewSimpleTableFor implements data table renderer
 func NewSimpleTableFor(data interface{}, opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
-	return mainTableHelper(data, opts, help, func(data interface{}, opts tags.Options) tableHelper {
+	if _, ok := opts["st"]; !ok {
+		opts["var"] = "dt"
+	}
+	return utils.BuffaloHelperCallback(nil, nil, opts, help, func(model interface{}, data interface{}, opts tags.Options) utils.BuffaloHelper {
 		return newSimpleTable(data, opts)
 	})
 }
 
 // newSimpleTable create simple table
-func newSimpleTable(data interface{}, opts tags.Options) simpleTableHelper {
-	return simpleTableHelper {
+func newSimpleTable(data interface{}, opts tags.Options) utils.BuffaloHelper {
+	return SimpleTableHelper {
 		SimpleTableImp: &SimpleTableImp {
 			Options: opts,
-			data: data,
+			Data: data,
 		},
 	}
 }

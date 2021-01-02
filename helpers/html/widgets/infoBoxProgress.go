@@ -52,7 +52,7 @@ func InfoBoxProgress(opts tags.Options, help hctx.HelperContext) (template.HTML,
 		case "shadow":
 			return utils.ConvShadow(value)
 		case "bg":
-			return utils.ConvBG(value)
+			return utils.ConvBG("bg", value)
 		case "ct":
 			return utils.ConvInfoContentType(value)
 		}
