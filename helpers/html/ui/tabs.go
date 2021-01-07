@@ -227,10 +227,10 @@ func (b *CardTabsImp) page(opts tags.Options, id string, title string) (*CardTab
 
 const (
 	// cCarTabHeaderFrame is html source of tab frame
-	cCarTabHeaderFrame = `<div class="card"><div class="{{card_class}}"><h3 class="card-title p-3">{{title}}</h3><ul class="{{class}}">{{tabs}}</ul>`
+	cCarTabHeaderFrame = `<div class="card"><div class="{{card_class}}"><h3 class="card-title p-3">{{title}}</h3><ul class="{{class}}">{{tabs}}</ul></div>`
 
 	// cTabContentFrame is html source of tab
-	cTabContentFrame = `<div class="card-body"><div class="{{class}}">{{tabs}}</div></div></div></div>`
+	cTabContentFrame = `<div class="card-body"><div class="{{class}}">{{tabs}}</div></div>`
 )
 func (b *CardTabsImp) build() string {
 	tabHeader := ""
@@ -251,7 +251,7 @@ func (b *CardTabsImp) build() string {
 
 	OptionsTabFrame := map[string]string {
 		"class": "nav nav-pills {{class+}}",
-		"class+": "m1-auto p-2",
+		"class+": "m1-auto p-1",
 		"card_class": "card-header {{cardclass+}}",
 		"cardclass+": "d-flex p-0",
 		"title": "",
