@@ -18,6 +18,9 @@ func registerRoutes(*buffalo.App) {
 	g.GET("/forgot", AuthShowForgot)
 	g.POST("/forgot", AuthForgot)
 
+	app.GET("/examples/bootstrap", ExamplesBootstrap)
+	app.GET("/examples/widgets", ExamplesWidgets)
+	app.GET("/examples/tables", ExamplesTables)
 	/*
 	app.ErrorHandlers[404] = func(status int, err error, c buffalo.Context) error {
 		c.Render(404, r.HTML("404.html"))

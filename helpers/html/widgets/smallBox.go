@@ -7,6 +7,22 @@ import (
 	"lte/helpers/html/utils"
 )
 
+const (
+	// CSmallBoxBody contains html body for small box
+	CSmallBoxBody = `<div class="small-box {{bg}} {{shadow}}">
+              <div class="inner">
+                <h3>{{title}}<sup style="font-size: {{font_size}}">%</sup></h3>
+                <p>{{description}}</p>
+              </div>
+              <div class="icon">
+                <i class="ion {{icon}}"></i>
+              </div>
+              <a href="{{btn_url}}" class="small-box-footer">
+                {{btn_title}} <i class="fas {{btn_icon}}"></i>
+              </a>
+            </div>`
+)
+
 /*
  SmallBox implements admin lte small box with link
  Example : SmallBox( { icon: "fa-calendar-alt" } )
@@ -35,22 +51,10 @@ func SmallBox(opts tags.Options, help hctx.HelperContext) (template.HTML, error)
 		"btn_url":     "#",
 	}
 
-	_ = utils.LoadOptions(opts, options)
+	utils.LoadOptions(opts, options)
 	utils.LoadFromBlock("description", help, options)
-	body := `<div class="small-box {{bg}} {{shadow}}">
-              <div class="inner">
-                <h3>{{title}}<sup style="font-size: {{font_size}}">%</sup></h3>
-                <p>{{description}}</p>
-              </div>
-              <div class="icon">
-                <i class="ion {{icon}}"></i>
-              </div>
-              <a href="{{btn_url}}" class="small-box-footer">
-                {{btn_title}} <i class="fas {{btn_icon}}"></i>
-              </a>
-            </div>`
 
-	fullHtml := utils.FormatMap(body, options, func(name string, value string) string {
+	fullHtml := utils.Transform(CSmallBoxBody, options, func(name string, value string) string {
 		switch name {
 		case "shadow":
 			return utils.ConvShadow(value)

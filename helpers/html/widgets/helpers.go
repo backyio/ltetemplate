@@ -8,5 +8,6 @@ func New() hctx.Map {
 		"InfoBox": InfoBox,
 		"InfoBoxProgress": InfoBoxProgress,
 		"SmallBox": SmallBox,
+		"CardBox": CardBox,
 	}
 }

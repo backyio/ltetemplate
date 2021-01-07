@@ -7,6 +7,22 @@ import (
 	"lte/helpers/html/utils"
 )
 
+
+const (
+	// CInfoBoxProgress contains the html body of info box feature
+	CInfoBoxProgress = `<div class="info-box {{bg}} {{shadow}}">
+              <span class="info-box-icon"><i class="far {{icon}}"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">{{title}}</span>
+                <span class="{{ct}}">{{progress}}</span>
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{percent}}%"></div>
+                </div>
+                <span class="progress-description">{{description}}</span>
+              </div>
+            </div>`
+)
+
 /*
  InfoBoxProgress implements admin lte info box with progress
  Example : InfoBoxProgress( { icon: "fa-calendar-alt" } )
@@ -32,22 +48,10 @@ func InfoBoxProgress(opts tags.Options, help hctx.HelperContext) (template.HTML,
 		"title":       "",
 	}
 
-	_ = utils.LoadOptions(opts, options)
+	utils.LoadOptions(opts, options)
 	utils.LoadFromBlock("description", help, options)
 
-	body := `<div class="info-box {{bg}} {{shadow}}">
-              <span class="info-box-icon"><i class="far {{icon}}"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">{{title}}</span>
-                <span class="{{ct}}">{{progress}}</span>
-                <div class="progress">
-                  <div class="progress-bar" style="width: {{percent}}%"></div>
-                </div>
-                <span class="progress-description">{{description}}</span>
-              </div>
-            </div>`
-
-	fullHtml := utils.FormatMap(body, options, func(name string, value string) string {
+	fullHtml := utils.Transform(CInfoBoxProgress, options, func(name string, value string) string {
 		switch name {
 		case "shadow":
 			return utils.ConvShadow(value)

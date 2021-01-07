@@ -23,10 +23,12 @@ func BuffaloHelperCallback(model interface{}, data interface{}, opts tags.Option
 	}
 	ui := fn(model, data, opts)
 	help.Set(hn, ui)
-	s, err := help.Block()
-	if err != nil {
-		return "", err
+	if help.HasBlock() {
+		s, err := help.Block()
+		if err != nil {
+			return "", err
+		}
+		ui.Append(s)
 	}
-	ui.Append(s)
 	return ui.HTML(), nil
 }

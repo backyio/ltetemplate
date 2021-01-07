@@ -4,12 +4,13 @@ import (
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/helpers"
 	"github.com/gobuffalo/helpers/forms"
+	"github.com/gobuffalo/helpers/forms/bootstrap"
 	"github.com/gobuffalo/helpers/hctx"
+	bs "lte/helpers/html/bootstrap"
 	HtmlTables "lte/helpers/html/tables"
 	"lte/helpers/html/ui"
 	"lte/helpers/html/widgets"
 	JSTables "lte/helpers/js/tables"
-	"github.com/gobuffalo/helpers/forms/bootstrap"
 )
 
 // hWidgets contains lte widget helpers
@@ -18,6 +19,7 @@ var (
 	hHtmlTables  = HtmlTables.New()
 	hUI      = ui.New()
 	hJSTables = JSTables.New()
+	hBootStrap = bs.New()
 )
 
 // lteALL is function for collecting all available lte helper function
@@ -27,6 +29,7 @@ var lteALL = func() hctx.Map {
 		hHtmlTables,
 		hUI,
 		hJSTables,
+		hBootStrap,
 	)
 }
 
@@ -35,9 +38,8 @@ func DefaultHelpers() render.Helpers {
 	hAll := helpers.ALL()
 	lAll := lteALL();
 	allHelpers := hctx.Merge( hAll, lAll)
-	h := render.Helpers(allHelpers)
-	h[forms.FormKey] = bootstrap.Form
-	h[forms.FormForKey] = bootstrap.FormFor
-	h["form_for"] = bootstrap.FormFor
-	return h
+	allHelpers[forms.FormKey] = bootstrap.Form
+	allHelpers[forms.FormForKey] = bootstrap.FormFor
+	allHelpers["form_for"] = bootstrap.FormFor
+	return render.Helpers(allHelpers)
 }

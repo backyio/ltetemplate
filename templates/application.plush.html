@@ -32,7 +32,9 @@
   <%= stylesheetTag("plugins/daterangepicker/daterangepicker.css") %>
   <!-- summernote -->
   <%= stylesheetTag("plugins/summernote/summernote-bs4.css") %>
+
 <% } %>
+
 
 </head>
 <%= if (RenderJustFrame) { %>
@@ -79,45 +81,47 @@
 
 
 <!-- jQuery -->
-<%= javascriptTag("plugins/jquery/jquery.js") %>
+<%= javascriptTag("/plugins/jquery/jquery.js") %>
 <!-- jQuery UI 1.11.4 -->
-<%= javascriptTag("plugins/jquery-ui/jquery-ui.js") %>
+<%= javascriptTag("/plugins/jquery-ui/jquery-ui.js") %>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <% } %>
 <!-- Bootstrap 4 -->
-<%= javascriptTag("plugins/bootstrap/js/bootstrap.bundle.js") %>
+<%= javascriptTag("/plugins/bootstrap/js/bootstrap.bundle.js") %>
 <!-- AdminLTE App -->
-<%= javascriptTag("js/adminlte.js") %>
+<%= javascriptTag("/js/adminlte.js") %>
 <!-- AdminLTE for demo purposes -->
 
 <%= if (RenderJustFrame) { %>
 
 <% } else { %>
  <!-- ChartJS -->
- <%= javascriptTag("plugins/chart.js/Chart.js") %>
+ <%= javascriptTag("/plugins/chart.js/Chart.js") %>
  <!-- Sparkline -->
- <%= javascriptTag("plugins/sparklines/sparkline.js") %>
- <!-- JQVMap -->
- <%= javascriptTag("plugins/jqvmap/jquery.vmap.js") %>
- <%= javascriptTag("plugins/jqvmap/maps/jquery.vmap.usa.js") %>
+ <%= javascriptTag("/plugins/sparklines/sparkline.js") %>
+ <!-- JQVMap
+ <%= javascriptTag("/plugins/jqvmap/jquery.vmap.js") %>
+ <%= javascriptTag("/plugins/jqvmap/maps/jquery.vmap.usa.js") %>
+ -->
  <!-- jQuery Knob Chart -->
- <%= javascriptTag("plugins/jquery-knob/jquery.knob.js") %>
+ <%= javascriptTag("/plugins/jquery-knob/jquery.knob.js") %>
  <!-- daterangepicker -->
- <%= javascriptTag("plugins/moment/moment.js") %>
- <%= javascriptTag("plugins/daterangepicker/daterangepicker.js") %>
+ <%= javascriptTag("/plugins/moment/moment.js") %>
+ <%= javascriptTag("/plugins/daterangepicker/daterangepicker.js") %>
  <!-- Tempusdominus Bootstrap 4 -->
- <%= javascriptTag("plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js") %>
+ <%= javascriptTag("/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js") %>
  <!-- Summernote -->
- <%= javascriptTag("plugins/summernote/summernote-bs4.js") %>
+ <%= javascriptTag("/plugins/summernote/summernote-bs4.js") %>
  <!-- overlayScrollbars -->
- <%= javascriptTag("plugins/overlayScrollbars/js/jquery.overlayScrollbars.js") %>
+ <%= javascriptTag("/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js") %>
  <!-- AdminLTE for demo purposes -->
- <%= javascriptTag("js/demo.js") %>
- <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
- <%= javascriptTag("js/pages/dashboard.js") %>
+ <%= javascriptTag("/js/demo.js") %>
+ <!-- AdminLTE dashboard demo (This is only for demo purposes)
+ <%= javascriptTag("/js/pages/dashboard.js") %>
+ -->
 <% } %>
 
 </body>

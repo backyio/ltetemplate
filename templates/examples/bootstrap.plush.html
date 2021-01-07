@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { block: "xs", disabled: "true" } )  { %>
+            Hello box
+            <% } %>
+        </div>
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { title: "Bootstrap button", bg: "warning" } ) %>
+        </div>
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { title: "Button block", block: "true", bg: "gradient-danger", gradient: "true" } ) %>
+        </div>
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { title: "Button disabled", disabled: "false" } ) %>
+        </div>
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { title: "Button disabled", disabled: "false" } ) %>
+        </div>
+        <div class="col-lg-2 col-2">
+            <%= BSButton( { title: "Button disabled", disabled: "false", size: "sm" } ) %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-4">
+            <%=  BSAlertBox( { bg: "warning" }) { %>
+            <strong>Block</strong> content
+            <% } %>
+        </div>
+        <div class="col-lg-4 col-4">
+            <%=  BSAlertBox( { bg: "info", content: "internal content" }) %>
+        </div>
+    </div>
+    <div class="row">
+        <%=  BSJumbotron( { title: "header 1", content: "body 1" }) %>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-4">
+            <%= BSTab( { var: "b" } )  { %>
+                <% BSTabPage("b", { id: "p1", active: true } ) { %>
+            Title 1
+                <% } %>
+                <% BSTabPage("b", { id: "p2", title: "item2", active: false } )%>
+                <% BSTabPage("b", { id: "p3", title: "item3", active: false } )%>
+                <% BSTabPageContent( "b", { id: "p1" } ) { %>
+                    <%= BSBadgeHeading( { title: "mytext 3", bg: "warning", text: "hello world  ", size: 3 } ) %>
+              <% } %>
+                <% BSTabPageContent( "b", { id: "p2" } ) { %>
+                    <%= BSTooltip({ title: "hello2", content: "This is the tooltip for hello2", class: "red-tooltip text-warning"} ) %>
+                <% } %>
+
+                <% BSTabPageContent( "b", { id: "p3" } ) { %>
+                    <%= BSBadge( { title: "mytext 3", bg: "warning" } ) %>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+
+</div>

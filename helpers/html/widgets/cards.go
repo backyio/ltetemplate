@@ -20,7 +20,26 @@ import (
 	refresh_url - 'refresh maximize collapse remove'
     btn         -
 */
-func Card(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
+
+
+var (
+	CCardBody = `<div class="card card-success">
+<div class="card-header">
+ <h3 class="card-title">{{title}}</h3>
+ <div class="card-tools">%s</div>
+</div>
+<div class="card-body">{{description}}</div>
+<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div></div>`
+
+	CCardBtnData = map[string]string{
+		"refresh":  `<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="{{refresh_url}}" data-source-selector="#card-refresh-content" data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>`,
+		"maximize": `<button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>`,
+		"collapse": `<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>`,
+		"remove":   `<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>`,
+	}
+)
+
+func CardBox(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
 
 	options := map[string]string{
 		"bg":          "info",
@@ -32,33 +51,20 @@ func Card(opts tags.Options, help hctx.HelperContext) (template.HTML, error) {
 	}
 
 	var strData string
-	btnData := map[string]string {
-		"refresh": `<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="{{refresh_url}}" data-source-selector="#card-refresh-content" data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>`,
-		"maximize": `<button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>`,
-		"collapse": `<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>`,
-		"remove": `<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>`,
-	}
-	_ = utils.LoadOptions(opts, options)
+
+	utils.LoadOptions(opts, options)
 	utils.LoadFromBlock("description", help, options)
 
 	btnOpts := options["btn"]
-	for k, v := range btnData {
+	for k, v := range CCardBtnData {
 		if strings.Contains(btnOpts, k) {
 			strData = fmt.Sprintf("%s%s", strData, v)
 		}
 	}
 
-body := `<div class="card card-success">
-<div class="card-header">
- <h3 class="card-title">{{title}}</h3>
- <div class="card-tools">%s</div>
-</div>
-<div class="card-body">{{description}}</div>
-<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div></div>`
+	body := fmt.Sprintf(CCardBody, strData)
 
-	body = fmt.Sprintf(body, strData)
-
-	fullHtml := utils.FormatMap(body, options, func(name string, value string) string {
+	fullHtml := utils.Transform(body, options, func(name string, value string) string {
 		switch name {
 		case "shadow":
 			return utils.ConvShadow(value)

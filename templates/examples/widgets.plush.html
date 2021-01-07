@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-10 col-6">
+            <%= UITab({var: "b", title: "Main tab" }) { %>
+                <%= UITabPage("c", { id: "p1", active: true } ) { %>
+                    Title 1
+                <% } %>
+                <% UITabPage("c", { id: "p2", title: "item2", active: false } ) %>
+                <% UITabPage("c", { id: "p3", title: "item3", active: false } ) %>
+
+                <% UITabPageContent( "c", { id: "p1" } ) { %>
+                  <%= BSBadgeHeading( { title: "mytext 3", bg: "warning", text: "hello world  ", size: 3 } ) %>
+                <% } %>
+                <% UITabPageContent( "c", { id: "p2" } ) { %>
+                  <%= BSTooltip({ title: "hello2", content: "This is the tooltip for hello2", class: "red-tooltip text-warning"} ) %>
+                <% } %>
+
+                <% UITabPageContent( "c", { id: "p3" } ) { %>
+                 <%= BSBadge( { title: "mytext 3", bg: "warning" } ) %>
+                <% } %>
+
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-4">
+            <%= BSTab( { var: "b" } )  { %>
+
+            <% BSTabPage("b", { id: "p1", active: true } ) { %>
+            Title 1
+            <% } %>
+            <% BSTabPage("b", { id: "p2", title: "item2", active: false } )%>
+            <% BSTabPage("b", { id: "p3", title: "item3", active: false } )%>
+            <% BSTabPageContent( "b", { id: "p1" } ) { %>
+            <%= BSBadgeHeading( { title: "mytext 3", bg: "warning", text: "hello world  ", size: 3 } ) %>
+            <% } %>
+            <% BSTabPageContent( "b", { id: "p2" } ) { %>
+            <%= BSTooltip({ title: "hello2", content: "This is the tooltip for hello2", class: "red-tooltip text-warning"} ) %>
+            <% } %>
+
+            <% BSTabPageContent( "b", { id: "p3" } ) { %>
+            <%= BSBadge( { title: "mytext 3", bg: "warning" } ) %>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>

@@ -58,6 +58,7 @@ func App() *buffalo.App {
 		// Custom route register
 		registerRoutes(app)
 
+
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

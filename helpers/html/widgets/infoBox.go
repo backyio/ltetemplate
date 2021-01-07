@@ -7,6 +7,20 @@ import (
 	"lte/helpers/html/utils"
 )
 
+const (
+
+	// CInfoBoxBody contains the body html data for info box
+	CInfoBoxBody = `<div class="info-box {{shadow}}">
+				 <span class="info-box-icon {{bg}}">
+					<i class="far {{icon}}"></i>
+                 </span>
+				<div class="info-box-content">
+                 <span class="info-box-text">{{title}}</span>
+                 <span class="{{ct}}">{{description}}</span>
+               </div>
+            </div>`
+)
+
 /*
  InfoBox implements admin lte info box
  Example : widget.InfoBox( { icon: "fa-calendar-alt" } )
@@ -30,19 +44,11 @@ func InfoBox(opts tags.Options, help hctx.HelperContext) (template.HTML, error) 
 		"title":       "",
 	}
 
-	_ = utils.LoadOptions(opts, options)
+	utils.LoadOptions(opts, options)
 	utils.LoadFromBlock("description", help, options)
-	body := `<div class="info-box {{shadow}}">
-				 <span class="info-box-icon {{bg}}">
-					<i class="far {{icon}}"></i>
-                 </span>
-				<div class="info-box-content">
-                 <span class="info-box-text">{{title}}</span>
-                 <span class="{{ct}}">{{description}}</span>
-               </div>
-            </div>`
 
-	fullHtml := utils.FormatMap(body, options, func(name string, value string) string {
+
+	fullHtml := utils.Transform(CInfoBoxBody, options, func(name string, value string) string {
 		switch name {
 		case "shadow":
 			return utils.ConvShadow(value)
